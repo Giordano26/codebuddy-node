@@ -1,0 +1,29 @@
+services:
+  node:
+    image: "node:20"
+    user: "node"
+    tty: true
+    working_dir: /home/node/app
+    volumes:
+      - ./app:/home/node/app
+    environment:
+      MONGO_URL: mongodb://database:27017/codebuddy
+      PORT: 8081
+    expose:
+      - 8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
+    entrypoint: sh -c "npm install && npm start"
+
+  database:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./app/data:/data/db:rw
+    healthcheck:
+      test: "echo 'db.runCommand(\"ping\").ok' | mongo database:27017/mydb --quiet"
+      interval: 30s
+      timeout: 10s
+      retries: 5

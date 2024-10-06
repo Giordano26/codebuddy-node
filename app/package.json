@@ -1,0 +1,16 @@
+{
+  "name": "codebuddy-node",
+  "version": "1.0.0",
+  "description": "codebuddy backend migration to nodejs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js"
+  },
+  "author": "Giordano26",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0",
+    "nodemon": "^3.1.7"
+  }
+}
