@@ -41,8 +41,6 @@ const userSchema = new Schema({
 
 userSchema.pre("save", function(next,){
 
-    //verificar tambem o email e username se já existe
-
     let user = this;
 
     if (!user.isModified('password')) return next();
